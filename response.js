@@ -3,6 +3,7 @@ class Response {
     constructor(message) {
         this.message = message;
         this.stream = null;
+        this.taskList = null;
     }
 
     getFullMessage() {
@@ -32,6 +33,41 @@ class Response {
 
     isStreamComplete() {
         return this.isComplete;
+    }
+
+    // 新增的计划响应相关方法
+    setPlanTasks(taskList) {
+        this.taskList = taskList;
+    }
+
+    isPlanResponse() {
+        return this.taskList != null;
+    }
+
+    getTaskList() {
+        return this.taskList;
+    }
+
+    addTask(task) {
+        if (!this.taskList) {
+            this.taskList = [];
+        }
+        this.taskList.push(task);
+    }
+
+    removeTask(taskId) {
+        if (this.taskList) {
+            this.taskList = this.taskList.filter(task => task.id !== taskId);
+        }
+    }
+
+    updateTask(taskId, updates) {
+        if (this.taskList) {
+            const taskIndex = this.taskList.findIndex(task => task.id === taskId);
+            if (taskIndex !== -1) {
+                this.taskList[taskIndex] = { ...this.taskList[taskIndex], ...updates };
+            }
+        }
     }
 }
 
