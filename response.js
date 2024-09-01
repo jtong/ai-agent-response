@@ -4,6 +4,7 @@ class Response {
         this.message = message;
         this.stream = null;
         this.taskList = null;
+        this.isHtml = false;
     }
 
     getFullMessage() {
@@ -68,6 +69,14 @@ class Response {
                 this.taskList[taskIndex] = { ...this.taskList[taskIndex], ...updates };
             }
         }
+    }
+
+    setAsHtml() {
+        this.isHtml = true;
+    }
+
+    isHtml() {
+        return this.isHtml;
     }
 }
 
