@@ -4,7 +4,7 @@ class Response {
         this.message = message;
         this.stream = null;
         this.taskList = null;
-        this.isHtml = false;
+        this._isHtml = false;
     }
 
     getFullMessage() {
@@ -72,11 +72,11 @@ class Response {
     }
 
     setAsHtml() {
-        this.isHtml = true;
+        this._isHtml = true;
     }
 
     isHtml() {
-        return this.isHtml;
+        return this._isHtml;
     }
 }
 
