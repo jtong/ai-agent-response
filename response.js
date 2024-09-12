@@ -5,6 +5,7 @@ class Response {
         this.stream = null;
         this.taskList = null;
         this._isHtml = false;
+        this.availableTasks = [];
     }
 
     getFullMessage() {
@@ -77,6 +78,18 @@ class Response {
 
     isHtml() {
         return this._isHtml;
+    }
+    
+    addAvailableTask(availableTask) {
+        this.availableTasks.push(availableTask);
+    }
+
+    getAvailableTasks() {
+        return this.availableTasks;
+    }
+
+    hasAvailableTasks() {
+        return this.availableTasks.length > 0;
     }
 }
 
