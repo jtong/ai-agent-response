@@ -6,6 +6,7 @@ class Response {
         this.taskList = null;
         this._isHtml = false;
         this.availableTasks = [];
+        this.updateLastMessage = false; // 新增的标志位
     }
 
     getFullMessage() {
@@ -90,6 +91,15 @@ class Response {
 
     hasAvailableTasks() {
         return this.availableTasks.length > 0;
+    }
+
+    // 新增方法
+    setUpdateLastMessage(flag) {
+        this.updateLastMessage = flag;
+    }
+
+    shouldUpdateLastMessage() {
+        return this.updateLastMessage;
     }
 }
 
