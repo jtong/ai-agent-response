@@ -9,7 +9,7 @@ class Task {
     /**
     * Creates a new Task instance.
     * @param {Object} params - The parameters for creating a task.
-    * @param {string} params.name - The name of the task.
+    * @param {string} params.name - The name of the task. 
     * @param {string} params.type - The type of the task. Should be either Task.TYPE_MESSAGE or Task.TYPE_ACTION.
     * @param {string} params.message - The message content of the task.
     * @param {Object} [params.meta={}] - Additional metadata for the task.
