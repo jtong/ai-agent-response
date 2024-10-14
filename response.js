@@ -113,6 +113,40 @@ class Response {
     hasNextTask() {
         return this.nextTask !== null;
     }
+
+    static fromJSON(config) {
+        const response = new Response(config.message || '');
+
+        if (config.isHtml) {
+            response.setAsHtml();
+        }
+
+        if (config.stream) {
+            response.setStream(config.stream);
+        }
+
+        if (config.meta) {
+            response.meta = config.meta;
+        }
+
+        if (config.updateLastMessage) {
+            response.setUpdateLastMessage(config.updateLastMessage);
+        }
+
+        if (config.availableTasks && Array.isArray(config.availableTasks)) {
+            config.availableTasks.forEach(taskConfig => {
+                const task = new Task(taskConfig.task);
+                const availableTask = new AvailableTask(taskConfig.name, task);
+                response.addAvailableTask(availableTask);
+            });
+        }
+
+        if (config.nextTask) {
+            response.setNextTask(new Task(config.nextTask));
+        }
+
+        return response;
+    }
 }
 
 module.exports = Response;
