@@ -1,4 +1,7 @@
 // response.js
+
+const Task = require('./task');
+const AvailableTask = require('./availableTask');
 class Response {
     constructor(message) {
         this.message = message;
