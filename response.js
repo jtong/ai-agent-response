@@ -10,7 +10,7 @@ class Response {
         this._isHtml = false;
         this.availableTasks = [];
         this.updateLastMessage = false;
-        this.nextTask = null;
+        this.nextTasks = [];
         this.isVirtual = false;
         this.meta = {}
     }
@@ -107,16 +107,16 @@ class Response {
         return this.updateLastMessage;
     }
 
-    setNextTask(task) {
-        this.nextTask = task;
+    addNextTask(task) {
+        this.nextTasks.push(task);
     }
 
-    getNextTask() {
-        return this.nextTask;
+    getNextTasks() {
+        return this.nextTasks;
     }
 
-    hasNextTask() {
-        return this.nextTask !== null;
+    hasNextTasks() {
+        return this.nextTasks.length > 0;
     }
 
     setMeta(meta) {
@@ -154,8 +154,10 @@ class Response {
             });
         }
 
-        if (config.nextTask) {
-            response.setNextTask(new Task(config.nextTask));
+        if (config.nextTasks && Array.isArray(config.nextTasks)) {
+            config.nextTasks.forEach(taskConfig => {
+                response.addNextTask(new Task(taskConfig));
+            });
         }
 
         return response;
