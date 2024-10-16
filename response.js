@@ -11,6 +11,8 @@ class Response {
         this.availableTasks = [];
         this.updateLastMessage = false;
         this.nextTask = null;
+        this.isVirtual = false;
+        this.meta = {}
     }
 
     getFullMessage() {
@@ -115,6 +117,14 @@ class Response {
 
     hasNextTask() {
         return this.nextTask !== null;
+    }
+
+    setMeta(meta) {
+        this.meta = { ...this.meta, ...meta };
+    }
+    
+    getMeta() {
+        return this.meta;
     }
 
     static fromJSON(config) {
