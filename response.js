@@ -113,7 +113,12 @@ class Response {
         if (config.availableTasks && Array.isArray(config.availableTasks)) {
             config.availableTasks.forEach(taskConfig => {
                 const task = new Task(taskConfig.task);
-                const availableTask = new AvailableTask(taskConfig.name, task);
+                const availableTask = new AvailableTask(
+                    taskConfig.name,
+                    task,
+                    taskConfig.control || null,
+                    taskConfig.options || null
+                );
                 response.addAvailableTask(availableTask);
             });
         }
